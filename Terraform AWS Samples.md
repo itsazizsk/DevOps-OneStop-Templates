@@ -1,4 +1,4 @@
-# 1.1 Terraform AWS Samples
+# Terraform AWS Samples
 ### Start with provider & basic variables (put this at top of your file):
 ```
 terraform {
