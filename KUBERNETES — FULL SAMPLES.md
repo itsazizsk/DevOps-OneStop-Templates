@@ -155,7 +155,7 @@ spec:
     - port: 80
       targetPort: 80
 ```
-### I. Ingress
+### `I. Ingress`
 #### `(NGINX Ingress example)`
 ```
 apiVersion: networking.k8s.io/v1
@@ -175,7 +175,7 @@ spec:
                 port:
                   number: 80
 ```
-### J. ConfigMap
+### `J. ConfigMap`
 ```
 apiVersion: v1
 kind: ConfigMap
@@ -185,7 +185,7 @@ data:
   APP_ENV: "prod"
   LOG_LEVEL: "debug"
 ```
-### K. Secret
+### `K. Secret`
 ```
 apiVersion: v1
 kind: Secret
@@ -196,7 +196,7 @@ data:
   username: dXNlcg==        # base64
   password: cGFzc3dvcmQ=
 ```
-### L. PV + PVC
+### `L. PV + PVC`
 #### `PV`
 ```
 apiVersion: v1
@@ -223,7 +223,7 @@ spec:
     requests:
       storage: 5Gi
 ```
-### M. Horizontal Pod Autoscaler (HPA)
+### `M. Horizontal Pod Autoscaler (HPA)`
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -244,7 +244,7 @@ spec:
           type: Utilization
           averageUtilization: 60
 ```
-### N. NetworkPolicy
+### `N. NetworkPolicy`
 ```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -260,7 +260,7 @@ spec:
             matchLabels:
               app: frontend
 ```
-## 1.2 ADVANCED
+## `1.2 ADVANCED`
 ### `A. CronJob`
 ```
 apiVersion: batch/v1
