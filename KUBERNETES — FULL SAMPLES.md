@@ -1,6 +1,6 @@
 # KUBERNETES — FULL SAMPLES
 ## 1.1 CORE MANIFESTS
-### A. Pod
+### `A. Pod`
 ```
 apiVersion: v1
 kind: Pod
@@ -13,7 +13,7 @@ spec:
       ports:
         - containerPort: 80
 ```
-### B. ReplicaSet
+### `B. ReplicaSet`
 ```
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -33,7 +33,7 @@ spec:
         - name: nginx
           image: nginx:1.25
 ```
-### C. Deployment
+### `C. Deployment`
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -58,7 +58,7 @@ spec:
           ports:
             - containerPort: 80
 ```
-### D. StatefulSet
+### `D. StatefulSet`
 ```
 apiVersion: apps/v1
 kind: StatefulSet
@@ -93,7 +93,7 @@ spec:
           requests:
             storage: 5Gi
 ```
-### E. DaemonSet
+### `E. DaemonSet`
 ```
 apiVersion: apps/v1
 kind: DaemonSet
@@ -112,7 +112,7 @@ spec:
         - name: exporter
           image: prom/node-exporter
 ```
-### F. Service — ClusterIP
+### `F. Service — ClusterIP`
 ```
 apiVersion: v1
 kind: Service
@@ -126,7 +126,7 @@ spec:
     - port: 80
       targetPort: 80
 ```
-### G. Service — NodePort
+### `G. Service — NodePort`
 ```
 apiVersion: v1
 kind: Service
@@ -141,7 +141,7 @@ spec:
       targetPort: 80
       nodePort: 30080
 ```
-### H. Service — LoadBalancer
+### `H. Service — LoadBalancer`
 ```
 apiVersion: v1
 kind: Service
@@ -156,7 +156,7 @@ spec:
       targetPort: 80
 ```
 ### I. Ingress
-#### (NGINX Ingress example)
+#### `(NGINX Ingress example)`
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -197,7 +197,7 @@ data:
   password: cGFzc3dvcmQ=
 ```
 ### L. PV + PVC
-#### PV
+#### `PV`
 ```
 apiVersion: v1
 kind: PersistentVolume
@@ -211,7 +211,7 @@ spec:
   hostPath:
     path: /mnt/data
 ```
-#### PVC
+#### `PVC`
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -261,7 +261,7 @@ spec:
               app: frontend
 ```
 ## 1.2 ADVANCED
-### A. CronJob
+### `A. CronJob`
 ```
 apiVersion: batch/v1
 kind: CronJob
@@ -279,7 +279,7 @@ spec:
               command: ["sh", "-c", "echo Backup completed"]
           restartPolicy: OnFailure
 ```
-### B. PodDisruptionBudget
+### `B. PodDisruptionBudget`
 ```
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -291,7 +291,7 @@ spec:
     matchLabels:
       app: web
 ```
-### C. Readiness & Liveness Probes
+### `C. Readiness & Liveness Probes`
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -323,7 +323,7 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 5
 ```
-### D. Affinity & Anti-Affinity
+### `D. Affinity & Anti-Affinity`
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -363,7 +363,7 @@ mychart/
     service.yaml
     ingress.yaml
 ```
-### 2.2 values.yaml
+### `2.2 values.yaml`
 ```
 replicaCount: 2
 
@@ -379,7 +379,7 @@ ingress:
   enabled: true
   host: myapp.com
 ```
-### 2.3 templates/deployment.yaml
+### `2.3 templates/deployment.yaml`
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -401,7 +401,7 @@ spec:
           ports:
             - containerPort: 80
 ```
-### 2.4 templates/service.yaml
+### `2.4 templates/service.yaml`
 ```
 apiVersion: v1
 kind: Service
@@ -415,7 +415,7 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: 80
 ```
-### 2.5 templates/ingress.yaml
+### `2.5 templates/ingress.yaml`
 ```
 {{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
@@ -437,15 +437,15 @@ spec:
 {{- end }}
 ```
 ### 2.6 Helm Commands
-#### Install chart
+#### `Install chart`
 ```
 helm install myapp ./mychart
 ```
-#### Upgrade release
+#### `Upgrade release`
 ```
 helm upgrade myapp ./mychart
 ```
-#### Uninstall
+#### `Uninstall`
 ```
 helm uninstall myapp
 ```
