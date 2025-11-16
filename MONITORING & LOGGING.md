@@ -705,7 +705,7 @@ az monitor diagnostic-settings create \
 
 * Prometheus evaluates rules (`alert_rules.yml`) → fires → sends to Alertmanager (`alertmanager:9093`) → Alertmanager routes to receiver (email / Slack / webhook)
 
-### Example runbook snippet for InstanceHighCPU alert
+### Example runbook snippet for `InstanceHighCPU` alert
 ```
 1. Alert received via Slack/email with instance label.
 2. SSH into instance: ssh ec2-user@<instance-ip>
@@ -718,7 +718,7 @@ az monitor diagnostic-settings create \
 ```
 ### 7) VERIFY & HEALTH CHECKS (commands)
 
-* Prometheus UI: `http://<host>:9090/` → Status → Targets (should show UP)
+* Prometheus UI: `http://<host>:9090/` → Status → Targets (should show `UP`)
 
 * Alertmanager UI: `http://<host>:9093/`
 
@@ -730,19 +730,19 @@ az monitor diagnostic-settings create \
 
 ### 8) BEST PRACTICES & PRODUCTION NOTES
 
-* Security: never expose management ports publicly. Use VPN or private network / NAT. Protect Grafana/Kibana with authentication (LDAP/OAuth).
+* **Security**: never expose management ports publicly. Use VPN or private network / NAT. Protect Grafana/Kibana with authentication (LDAP/OAuth).
 
-* Secrets: store sensitive keys in secret stores (AWS Secrets Manager, Azure Key Vault) and inject into containers via orchestration (K8s Secrets).
+* **Secrets**: store sensitive keys in secret stores (AWS Secrets Manager, Azure Key Vault) and inject into containers via orchestration (K8s Secrets).
 
-*Scaling: Elasticsearch requires cluster sizing; use multiple nodes and persistent volumes.
+* **Scaling**: Elasticsearch requires cluster sizing; use multiple nodes and persistent volumes.
 
-*Retention: configure Prometheus TSDB retention, Elastic index lifecycle management (ILM) and CloudWatch log retention policy.
+* **Retention**: configure Prometheus TSDB retention, Elastic index lifecycle management (ILM) and CloudWatch log retention policy.
 
-*Alerting: avoid noisy alerts — tune for durations and thresholds. Use dedupe/grouping in Alertmanager.
+* **Alerting**: avoid noisy alerts — tune `for` durations and thresholds. Use dedupe/grouping in Alertmanager.
 
-* High availability: run multiple Prometheus instances with remote_write to long-term storage (Cortex/Thanos) for HA.
+* **High availability**: run multiple Prometheus instances with remote_write to long-term storage (Cortex/Thanos) for HA.
 
-* Monitoring as code: keep configs in Git, use CI to validate before applying (lint Prometheus, kie commit rules).
+* **Monitoring as code**: keep configs in Git, use CI to validate before applying (lint Prometheus, kie commit rules).
 
 ### 9) README (quick start)
 
