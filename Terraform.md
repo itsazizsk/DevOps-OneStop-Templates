@@ -1,5 +1,5 @@
 # Azure Sample
-## VM with Vnet,Subnet,NIC and RG
+### VM with Vnet,Subnet,NIC and RG
 ```
 terraform {
   required_providers {
@@ -68,9 +68,27 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 }
-
 ```
-## Azure Storage Account
+### Azure VM
+```
+resource "azurerm_windows_virtual_machine" "vm" {
+  name                = "myVM"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  size                = "Standard_B2s"
+
+  admin_username = "azureuser"
+  admin_password = "Password123!"
+
+  network_interface_ids = [azurerm_network_interface.nic.id]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+}
+```
+### Azure Storage Account
 ```
 resource "azurerm_storage_account" "sa" {
   name                     = "samystorage123"
@@ -80,7 +98,7 @@ resource "azurerm_storage_account" "sa" {
   account_replication_type = "LRS"
 }
 ```
-## AKS Cluster
+### AKS Cluster
 ```
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "myAKSCluster"
@@ -100,20 +118,20 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 ```
 # AWS Sample
-## AWS VPC
+### AWS VPC
 ```
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
 ```
-## AWS Subnet
+### AWS Subnet
 ```
 resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
 }
 ```
-## AWS EC2
+### AWS EC2
 ```
 resource "aws_instance" "web" {
   ami           = "ami-02feb0c3888f636f3"
@@ -125,14 +143,14 @@ resource "aws_instance" "web" {
   }
 }
 ```
-## AWS S3 Bucket
+### AWS S3 Bucket
 ```
 resource "aws_s3_bucket" "bucket" {
   bucket = "my-demo-bucket-12345"
   acl    = "private"
 }
 ```
-## AWS IAM Role
+### AWS IAM Role
 ```
 resource "aws_iam_role" "role" {
   name = "demo-role"
@@ -148,6 +166,4 @@ resource "aws_iam_role" "role" {
     }]
   })
 }
-```
-## eeee
 ```
